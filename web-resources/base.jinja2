@@ -1,28 +1,20 @@
-<!--
-  ©️ Dan Gazizullin, 2021-2023
-  This file is a part of Hikka Userbot
-  🌐 https://github.com/hikariatama/Hikka
-  You can redistribute it and/or modify it under the terms of the GNU AGPLv3
-  🔑 https://www.gnu.org/licenses/agpl-3.0.html
--->
-
 <!DOCTYPE html>
-
-<html>
-
+<html lang="en">
 <head>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" type="text/css">
-  <title>Heroku userbot</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-  <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-  <link rel="icon" href="https://github.com/hikariatama/assets/raw/master/cherry-blossom_1f338.png">
-  {% block head %}{% endblock %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ghost && Heroku</title>
+    <link href="https://fonts.googleapis.com/css2?family=Creepster&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/base.css">
+    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+    {% block head %}{% endblock %}
 </head>
-
 <body>
-  <div class="main_content">{% block content %}{% endblock %}</div>
-  {% block after %}{% endblock %}
+    <div id="particles-js"></div>
+    <canvas id="ghostCanvas" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 1;"></canvas>
+    <div id="messageOverlay" style="position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 2em; color: #ff0000; text-shadow: 0 0 10px #ff0000; opacity: 0; z-index: 10; font-family: 'Creepster', cursive; transition: opacity 1s;"></div>
+    {% block content %}{% endblock %}
+    {% block after %}{% endblock %}
+    <script src="/static/root.js"></script>
 </body>
-
 </html>
