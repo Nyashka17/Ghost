@@ -1,197 +1,66 @@
-<!--
-  ©️ Dan Gazizullin, 2021-2023
-  This file is a part of Hikka Userbot
-  🌐 https://github.com/hikariatama/Hikka
-  You can redistribute it and/or modify it under the terms of the GNU AGPLv3
-  🔑 https://www.gnu.org/licenses/agpl-3.0.html
--->
-
 {% extends "base.jinja2" %}
 
-{% block head %}
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/bodymovin/5.8.1/lottie.min.js"></script>
-<!-- <script src="//unpkg.com/@dotlottie/player-component@1.0.0/dist/dotlottie-player.js"></script> -->
-<script src="//unpkg.com/qr-code-styling@1.5.0/lib/qr-code-styling.js"></script>
+{% block head %}{% endblock %}
 
-<link href="https://css.gg/css?=arrow-right-r|add|brackets|chevron-right-o|smartphone" rel="stylesheet">
-
-<link rel="stylesheet" href="{{ static("base.css") }}">
-{% endblock %}
-
-{% block content %}
-{% endblock %}
+{% block content %}{% endblock %}
 
 {% block after %}
-
-<div class="blur auth vert_center">
-  <div id="tg_icon"></div>
-  <div class="waiting_for_auth">Waiting for authentification...</div>
-  <div class="confirm_auth">Please, confirm action in <span style="color:#28a0dc">Telegram</span></div>
-</div>
-<div class="auth-code-form blur">
-  <div id="monkey"></div>
-  <div id="monkey-close"></div>
-  <span class="code-caption">Enter the code you recieved from Telegram</span>
-  <input type="text" class="code-input" autocomplete="off">
-  <div class="enter">Enter</div>
-</div>
-<div class="eula-form blur">
-  <div class="vert_center" style="height: 100%">
-    <div>
-      <div id="law"></div>
-      <br><br>
-      <span class="code-caption">You are <span style="color:#c54245">prohibited</span> from adding more than 1 account
-        on the current platform by its EULA.</span>
+<div style="position: relative; z-index: 5; color: #ff0000; font-family: 'Creepster', cursive; text-align: center; padding: 20px;">
+    <h1 style="text-shadow: 2px 2px 4px #000, 0 0 10px #ff0000;">Waiting for the Summoning...</h1>
+    
+    <p style="font-size: 1.2em;">Please, confirm the ritual in Telegram</p>
+    
+    <div style="margin: 20px 0;">
+        <input type="text" placeholder="Enter the code from the shadows..." style="background: rgba(0,0,0,0.8); border: 1px solid #ff0000; color: #ff0000; padding: 10px; font-family: 'Creepster', cursive;">
+        <button style="background: #000; color: #ff0000; border: 1px solid #ff0000; padding: 10px 20px; margin-left: 10px; font-family: 'Creepster', cursive; cursor: url('data:image/svg+xml;utf8,<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\" viewBox=\"0 0 16 16\"><circle cx=\"8\" cy=\"8\" r=\"6\" fill=\"red\"/></svg>'), auto;">Enter the Void</button>
     </div>
-  </div>
+    
+    <p style="color: #990000;">You are forbidden from summoning more than 1 spirit on this plane by the Ancient EULA.</p>
+    
+    {% if heroku_installed %}
+    <div style="background: rgba(255,0,0,0.1); border: 1px solid #ff0000; padding: 10px; margin: 20px 0;">
+        <h2 style="color: #ff0000;">The Entity is Installed</h2>
+        <p>You can close this portal now... but it watches.</p>
+        <p>It might take time for the possession to complete. Be patient, mortal.</p>
+        <p>The vessel will tremble and whisper configurations!</p>
+        <p>Check the ether (Telegram) for the inline spirit's call.</p>
+    </div>
+    {% endif %}
+    
+    <h2 style="text-shadow: 0 0 5px #ff0000;">Heroku Necromancy</h2>
+    <p>Incomprehensibly the best userbot... or is it?</p>
+    
+    {% if not tg_done %}
+        <button style="background: #000; color: #ff0000; border: 1px solid #ff0000; padding: 10px 20px; font-family: 'Creepster', cursive; cursor: url('data:image/svg+xml;utf8,<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\" viewBox=\"0 0 16 16\"><circle cx=\"8\" cy=\"8\" r=\"6\" fill=\"red\"/></svg>'), auto;">Begin the Ritual</button>
+    {% else %}
+        <button style="background: #000; color: #ff0000; border: 1px solid #ff0000; padding: 10px 20px; font-family: 'Creepster', cursive;">Bind Another Soul</button>
+    {% endif %}
+    
+    {% if skip_creds and not lavhost %}
+        <button style="background: #000; color: #ff0000; border: 1px solid #ff0000; padding: 10px 20px; margin-top: 10px; font-family: 'Creepster', cursive;">Twist the API Chains</button>
+    {% endif %}
+    
+    <div style="margin: 40px 0; background: rgba(0,0,0,0.5); padding: 20px; border: 1px solid #990000;">
+        <h3 style="color: #ff0000;">Invocation Steps:</h3>
+        <ol style="text-align: left; color: #cc0000;">
+            <li>Open the Telegram Grimoire on your device</li>
+            <li>Navigate to Settings → Devices → Link the Damned Device</li>
+            <li>Point your mortal eye at this sigil to bind the login</li>
+        </ol>
+        <button style="background: #000; color: #ff0000; border: 1px solid #ff0000; padding: 10px 20px; font-family: 'Creepster', cursive;">Continue the Binding</button>
+        <br><br>
+        <button style="background: #000; color: #990000; border: 1px solid #990000; padding: 10px 20px; font-family: 'Creepster', cursive;">Whisper Phone Instead</button>
+    </div>
 </div>
-<div class="wrapper">
-  <div class="blur main finish_block">
-    <div id="installation_icon"></div>
-    <div class="title">Heroku is installed</div>
-    <div class="description">
-      Heroku is installed. You can close this page now.
-      <br>
-      <b>It might take a while for installation to fully complete. Please, be patient.</b>
-      <br>
-      <b>Heroku will restart and might send several configuration messages to complete the installation!</b>
-      <br>
-      <span style="font-size: 24px;">Check <span style="color:#28a0dc">Telegram</span> for a message from your <b>inline
-          bot</b></span>
-    </div>
-  </div>
-  <div class="blur main installation">
-    <div class="title">
-      <div class="heroku_label">
-        <div class="label_inner">
-          <img src="{{ platform_emoji }}" class="ringed_planet">
-          &nbsp;Heroku
-        </div>
-      </div>
-    </div><br>
-    <div class="description">Incomprehensibly <span style="color:#c54245">the best</span> userbot<br><span
-        style="color: #18cc18; display: none" class="authorized">Authorized!</span></div>
-    <div class="center">
-      {% if not tg_done %}
-      <div class="button" id="get_started">
-        <div class="horiz_center">
-          <div class="vert_center">
-            Get started
-          </div>
 
-          <div class="vert_center">
-            <i class="gg-arrow-right-r"></i>
-          </div>
-        </div>
-      </div>
-      {% else %}
-      <div class="button" id="get_started">
-        <div class="horiz_center">
-          <div class="vert_center">
-            Add phone
-          </div>
-
-          <div class="vert_center">
-            <i class="gg-add"></i>
-          </div>
-        </div>
-      </div>
-      {% endif %}
-      {% if skip_creds and not lavhost %}
-      <div class="button" id="enter_api">
-        <div class="horiz_center">
-          <div class="vert_center">
-            Change API Creds
-          </div>
-
-          <div class="vert_center">
-            <i class="gg-brackets"></i>
-          </div>
-        </div>
-      </div>
-      {% endif %}
-      <span id="block_api_id">
-        <label class="api_id" for="api_id">Telegram API ID: </label>
-        <input class="api_id" id="api_id" placeholder="••••" style="width: 4em;">
-      </span>
-      <span id="block_api_hash">
-        <label class="api_hash" for="api_hash">Telegram API hash: </label>
-        <input class="api_hash" id="api_hash" placeholder="••••••••••••••••••••••••••••••••" style="width: 24em;">
-      </span>
-      <span id="block_phone">
-        <label class="phone" for="phone">Phone: </label>
-        <input class="phone" id="phone" placeholder="••••••••••••" style="width: 12em;">
-      </span>
-      <span id="block_custom_bot">
-        <label class="custom_bot" for="custom_bot">Inline bot username (E.g. @username_bot): </label>
-        <input class="custom_bot" id="custom_bot" placeholder="Leave empty to generate automatically"
-          style="width: 20em;" type="text">
-      </span>
-      <span id="block_qr_login">
-        <div class="qr_outer">
-          <div class="qr_inner">
-            <dotlottie-player autoplay loop mode="normal" src="https://static.dan.tatar/4T7FajtZbx.lottie"
-              style="width: 100px; height: 100px">
-            </dotlottie-player>
-          </div>
-        </div>
-        <div class="tg_guide">
-          <ol>
-            <li>
-              <span>Open Telegram on your phone</span>
-            </li>
-            <li>
-              <span>Go to <b>Settings</b> → <b>Devices</b> → <b>Link Desktop Device</b></span>
-            </li>
-            <li>
-              <span>Point your phone at this screen to confirm login</span>
-            </li>
-          </ol>
-        </div>
-      </span>
-    </div>
-
-    <div class="horiz_center">
-      <div id="continue_btn" class="button">
-        <div class="horiz_center">
-          <div class="vert_center">
-            Continue
-          </div>
-
-          <div class="vert_center">
-            <i class="gg-chevron-right-o"></i>
-          </div>
-        </div>
-      </div>
-      <div id="denyqr" class="button">
-        <div class="horiz_center">
-          <div class="vert_center">
-            Auth using phone instead
-          </div>
-
-          <div class="vert_center">
-            <i class="gg-smartphone"></i>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div id="root">
-
-  </div>
-</div>
-<script>
-  var skip_creds = "{{ skip_creds }}" == "True";
-  var auth_required = true;
-  fetch("/check_session", {
-    method: "POST",
-    credentials: "include"
-  })
-    .then(response => response.text())
-    .then((response) => {
-      auth_required = response != "1";
-    })
-</script>
-<script src="{{ static("root.js") }}"></script>
+<!-- Кровавые капли как псевдоэлементы -->
+<style>
+    h1::before, h2::before, p::before {
+        content: '💧'; color: #ff0000; position: absolute; animation: drip 2s infinite;
+    }
+    @keyframes drip {
+        0% { transform: translateY(0); opacity: 1; }
+        100% { transform: translateY(20px); opacity: 0; }
+    }
+</style>
 {% endblock %}
